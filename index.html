@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍞 לחמים</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            direction: rtl;
+            padding: 20px;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a69bd 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        header span {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        nav button {
+            flex: 1;
+            min-width: 180px;
+            padding: 18px 15px;
+            font-size: 18px;
+            font-weight: 500;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        nav button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        nav button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        nav button:hover::before {
+            opacity: 1;
+        }
+        nav button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 30px;
+        }
+        .recipe-container {
+            width: 100%;
+            max-width: 900px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            padding: 40px;
+            margin: 0 auto;
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .recipe-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            opacity: 0.1;
+            border-radius: 0 0 0 100%;
+            z-index: 0;
+        }
+        
+        .recipe-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #a6c0fe 0%, #f68084 100%);
+            opacity: 0.1;
+            border-radius: 0 100% 0 0;
+            z-index: 0;
+        }
+        
+        /* אנימציות */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        #recipe-content {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .water-percentage-table {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        nav button:hover {
+            animation: pulse 1s infinite;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .footer-tagline {
+            margin-top: 5px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .recipe-container {
+                padding: 25px;
+                border-radius: 15px;
+            }
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+            z-index: 2;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #f6d365, #fda085);
+            border-radius: 2px;
+        }
+        h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin: 25px 0 15px;
+            font-weight: 600;
+            position: relative;
+            padding-right: 20px;
+            z-index: 2;
+        }
+        h3::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            border-radius: 50%;
+        }
+        ol, ul {
+            padding-right: 25px;
+            font-size: 18px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+        ol {
+            counter-reset: recipe-counter;
+            list-style: none;
+        }
+        ol > li {
+            counter-increment: recipe-counter;
+            position: relative;
+            margin-bottom: 15px;
+            padding-right: 35px;
+        }
+        ol > li::before {
+            content: counter(recipe-counter);
+            position: absolute;
+            right: 0;
+            top: 2px;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        ul {
+            list-style: none;
+        }
+        ul > li {
+            position: relative;
+            margin-bottom: 12px;
+            padding-right: 25px;
+        }
+        ul > li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #f6d365;
+            font-size: 22px;
+            line-height: 1;
+        }
+        .print-btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        .print-btn button {
+            background: linear-gradient(135deg, #4a69bd 0%, #2c3e50 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .print-btn button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        .print-btn button:active {
+            transform: translateY(0);
+        }
+        
+        /* עיצוב טבלת רכיבים */
+        .ingredients-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background: #fff9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .ingredient-row {
+            display: flex;
+            border-bottom: 1px solid #f0e6e6;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .ingredient-row:last-child {
+            border-bottom: none;
+        }
+        
+        .ingredient-row:hover {
+            background: #fff0f0;
+        }
+        
+        .ingredient-name {
+            flex: 1;
+            font-weight: 500;
+            padding-right: 15px;
+            color: #5d4037;
+            font-size: 1.05em;
+        }
+        
+        .ingredient-amount {
+            width: 200px;
+            text-align: left;
+            color: #e65100;
+            font-weight: 600;
+        }
+
+        .step-content {
+            padding: 15px;
+        }
+    }
+
+    /* עיצוב כללי למתכונים */
+    .recipe-intro {
+        font-size: 1.1em;
+        color: #5d4037;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #fff9f9;
+        border-right: 4px solid #ff8a65;
+        border-radius: 0 8px 8px 0;
+    }
+    .prep-steps {
+        margin: 30px 0;
+        counter-reset: step-counter;
+    }
+    .step {
+        display: flex;
+        margin-bottom: 25px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .step:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .step-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 60px;
+        background: linear-gradient(135deg, #ff8a65, #ff7043);
+        color: white;
+        font-size: 1.8em;
+        font-weight: bold;
+        position: relative;
+    }
+    .step-number:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    }
+    .step-content {
+        padding: 20px;
+        flex-grow: 1;
+    }
+    .step h4 {
+        margin: 0 0 10px 0;
+        color: #5d4037;
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+    }
+    .step p {
+        margin: 0 0 10px 0;
+        color: #5d4037;
+        line-height: 1.6;
+    }
+    .step-tip {
+        background: #fff9f0;
+        border-right: 3px solid #ffcc80;
+        padding: 10px 15px;
+        border-radius: 0 8px 8px 0;
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        font-size: 0.9em;
+        color: #e65100;
+    }
+    .tip-icon {
+        margin-left: 8px;
+        font-size: 1.2em;
+    }
+    @media (max-width: 768px) {
+        .step {
+            flex-direction: column;
+        }
+        .step-number {
+            width: 100%;
+            min-height: 50px;
+        }
+        .step-content {
+            padding: 15px;
+        }
+    }
+
+    .recipe-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 15px 0 25px;
+        padding: 15px 0;
+        border-top: 1px dashed #ffccbc;
+        border-bottom: 1px dashed #ffccbc;
+    }
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff3e0;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        color: #e65100;
+    }
+    .meta-icon {
+        font-size: 1.1em;
+    }
+    .prep-step {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #fff9f9;
+        border-radius: 8px;
+        border-right: 3px solid #ff8a65;
+    }
+    .prep-step h4 {
+        color: #5d4037;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .prep-step h4:before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: #ff8a65;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+    .recipe-note {
+        background: #fff3e0;
+        padding: 10px 15px;
+        border-right: 3px solid #ffb74d;
+        margin: 10px 0;
+        border-radius: 0 5px 5px 0;
+        font-size: 0.95em;
+    }
+    .recipe-tips {
+        background: #f1f8e9;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 25px 0;
+        border-right: 3px solid #8bc34a;
+    }
+    .recipe-tips h4 {
+        color: #33691e;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .recipe-tips ul {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+    }
+    .recipe-tips li {
+        margin-bottom: 8px;
+        color: #2e7d32;
+    }
+    .storage-tip {
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        border-right: 3px solid #64b5f6;
+    }
+    .storage-tip h4 {
+        color: #0d47a1;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .storage-tip p {
+        margin: 8px 0 0 0;
+        color: #1565c0;
+    }
+    
+    @media (max-width: 768px) {
+        .ingredient-amount {
+            width: 150px;
+        }
+        
+        .recipe-meta {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .prep-step, .recipe-tips, .storage-tip {
+            padding: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+    
+    <header style="position: sticky; top: 0; z-index: 1000;">
+        <span>🍞 לחמים</span>
+    </header>
+    <nav>
+        <button onclick="showRecipe('hala')" ontouchstart="showRecipe('hala'); event.preventDefault();">חלה ביתית גבוהה ורכה</button>
+        <button onclick="showRecipe('baguette')" ontouchstart="showRecipe('baguette'); event.preventDefault();">בגטים קראנצ'יים בסגנון צרפתי</button>
+        <button onclick="showRecipe('rolls')" ontouchstart="showRecipe('rolls'); event.preventDefault();">לחמניות רכות ואווריריות</button>
+        <button onclick="showRecipe('spelt')" ontouchstart="showRecipe('spelt'); event.preventDefault();">לחם כוסמין מלא</button>
+        <button onclick="showRecipe('spelt_rolls')" ontouchstart="showRecipe('spelt_rolls'); event.preventDefault();">לחמניות כוסמין</button>
+        <button onclick="showRecipe('sweet_challah')" ontouchstart="showRecipe('sweet_challah'); event.preventDefault();">חלות מתוקות</button>
+    </nav>
+    <main>
+        <div class="recipe-container">
+            <div class="print-btn">
+                <button onclick="window.print()"><span class="print-icon">🖨️</span> הדפס מתכון</button>
+            </div>
+            <div id="recipe-content">
+                <h2>🥖 חלה ביתית גבוהה ורכה</h2>
+                <h3>🍞 מרכיבים:</h3>
+                <ul>
+                    <li>1 ק"ג קמח לבן</li>
+                    <li>10 גרם גרנטה</li>
+                    <li>20 גרם גלוטן</li>
+                    <li>2 כפות סוכר</li>
+                    <li>1 כף שמרים יבשים</li>
+                    <li>1 כף מלח (מוסיפים בסוף)</li>
+                    <li>2.5 כוסות מים פושרים</li>
+                    <li>1/4 כוס שמן</li>
+                </ul>
+                
+                <h3>👩‍🍳 שלבי הכנה:</h3>
+                <div class="prep-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>ערבוב החומרים</h4>
+                            <p>ערבבו בקערה את כל החומרים היבשים (קמח, גרנטה, גלוטן, סוכר ושמרים)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>לישה</h4>
+                            <p>הוסיפו בהדרגה את המים והשמן תוך כדי לישה</p>
+                            <div class="step-tip">
+                                <span class="tip-icon">💡</span>
+                                <span>זמן לישה מומלץ: 10 דקות</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>התפחה ראשונה</h4>
+                            <p>תנו לבצק לתפוח במקום חמים למשך שעה</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>חלוקת הבצק</h4>
+                            <p>חלקו את הבצק ל-4 חלקים שווים</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>צורת החלות</h4>
+                            <p>צרו את החלות</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>התפחה שנייה</h4>
+                            <p>תנו לחלות לתפוח שוב למשך 30-40 דקות</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>אפייה</h4>
+                            <p>אפו בתנור שחומם ל-180 מעלות למשך 30 דקות</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="water-percentage-table">
+                <h3>💧 אחוזי מים במתכונים</h3>
+                <div class="water-table">
+                    <div class="water-row water-header">
+                        <div class="water-cell">מתכון</div>
+                        <div class="water-cell">אחוז מים</div>
+                    </div>
+                    <div class="water-row">
+                        <div class="water-cell">חלה ביתית</div>
+                        <div class="water-cell">60%</div>
+                    </div>
+                    <div class="water-row">
+                        <div class="water-cell">בגטים צרפתיים</div>
+                        <div class="water-cell">60%</div>
+                    </div>
+                    <div class="water-row">
+                        <div class="water-cell">לחמניות רכות</div>
+                        <div class="water-cell">48%</div>
+                    </div>
+                    <div class="water-row">
+                        <div class="water-cell">לחם כוסמין מלא</div>
+                        <div class="water-cell">60%</div>
+                    </div>
+                    <div class="water-row">
+                        <div class="water-cell">לחמניות כוסמין</div>
+                        <div class="water-cell">48%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 לחמים</p>
+            <p class="footer-tagline">בישול מקצועי בבית שלך</p>
+        </div>
+    </footer>
+    <script>
+        const recipes = {
+            hala: `
+                <h2>🥖 חלה ביתית גבוהה ורכה</h2>
+                <h3>🍞 מרכיבים:</h3>
+                <ul>
+                    <li>1 ק"ג קמח לבן</li>
+                    <li>10 גרם גרנטה</li>
+                    <li>20 גרם גלוטן</li>
+                    <li>2 כפות סוכר</li>
+                    <li>1 כף שמרים יבשים</li>
+                    <li>1 כף מלח (מוסיפים בסוף)</li>
+                    <li>2.5 כוסות מים פושרים</li>
+                    <li>1/4 כוס שמן</li>
+                </ul>
+                
+                <h3>👩‍🍳 שלבי הכנה:</h3>
+                <div class="prep-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>ערבוב החומרים</h4>
+                            <p>ערבבו בקערה את כל החומרים היבשים (קמח, גרנטה, גלוטן, סוכר ושמרים)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>לישה</h4>
+                            <p>הוסיפו בהדרגה את המים והשמן תוך כדי לישה</p>
+                            <div class="step-tip">
+                                <span class="tip-icon">💡</span>
+                                <span>זמן לישה מומלץ: 10 דקות</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>התפחה ראשונה</h4>
+                            <p>תנו לבצק לתפוח במקום חמים למשך שעה</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>חלוקת הבצק</h4>
+                            <p>חלקו את הבצק ל-4 חלקים שווים</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>צורת החלות</h4>
+                            <p>צרו את החלות</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>התפחה שנייה</h4>
+                            <p>תנו לחלות לתפוח שוב למשך 30-40 דקות</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>אפייה</h4>
+                            <p>אפו בתנור שחומם ל-180 מעלות למשך 30 דקות</p>
+                        </div>
+                    </div>
+                </div>`,
+            baguette: `
+                <h2>🥖 בגטים קראנצ'יים בסגנון צרפתי</h2>
+                <h3>🍞 מרכיבים:</h3>
+                <ul>
+                    <li>1 ק"ג קמח</li>
+                    <li>10 גרם גרנטה</li>
+                    <li>30 גרם גלוטן</li>
+                    <li>2 כפות מלח</li>
+                    <li>1 כף שמרים יבשים</li>
+                    <li>2.5 כוסות מים קרים</li>
+                </ul>
+                
+                <h3>👩‍🍳 שלבי הכנה:</h3>
+                <ol>
+                    <li>ערבבו בקערה את החומרים היבשים</li>
+                    <li>הוסיפו בהדרגה את המים תוך כדי לישה</li>
+                    <li>לושו 10 דקות עד לקבלת בצק אחיד</li>
+                    <li>תנו לבצק לתפוח 1-2 שעות</li>
+                    <li>חלקו את הבצק לבגטים</li>
+                    <li>תנו לתפיחה שנייה של 40 דקות</li>
+                    <li>חריצו את הבגטים</li>
+                    <li>אפו בתנור שחומם ל-180 מעלות למשך 25 דקות</li>
+                </ol>`,
+            rolls: `
+                <h2>🥐 לחמניות רכות ואווריריות</h2>
+                <h3>🍞 מרכיבים:</h3>
+                <ul>
+                    <li>1 ק"ג קמח</li>
+                    <li>10 גרם גרנטה</li>
+                    <li>20 גרם גלוטן</li>
+                    <li>3 כפות סוכר</li>
+                    <li>1.5 כפות שמרים</li>
+                    <li>1 כפית מלח</li>
+                    <li>2 כוסות מים פושרים</li>
+                    <li>1/4 כוס שמן</li>
+                </ul>
+                
+                <h3>👩‍🍳 שלבי הכנה:</h3>
+                <ol>
+                    <li>ערבבו בקערה את החומרים היבשים</li>
+                    <li>הוסיפו בהדרגה את המים והשמן תוך כדי לישה</li>
+                    <li>לושו 10 דקות עד לקבלת בצק רך</li>
+                    <li>תנו לבצק לתפוח כשעה</li>
+                    <li>חלקו את הבצק לכדורים בגודל רצוי</li>
+                    <li>תנו לתפיחה נוספת של 30 דקות</li>
+                    <li>מרחו ביצה טרופה על הלחמניות</li>
+                    <li>אפו בתנור שחומם ל-180 מעלות למשך 25 דקות</li>
+                </ol>`,
+            spelt: `
+                <h2>🍞 לחם כוסמין מלא</h2>
+                <h3>🍞 מרכיבים:</h3>
+                <ul>
+                    <li>1 ק"ג קמח כוסמין</li>
+                    <li>10 גרם גרנטה</li>
+                    <li>20 גרם גלוטן</li>
+                    <li>2 כפות סוכר</li>
+                    <li>1 כף שמרים יבשים</li>
+                    <li>1 כף מלח (בסוף)</li>
+                    <li>2.5 כוסות מים פושרים</li>
+                    <li>1/4 כוס שמן</li>
+                </ul>
+                
+                <h3>👩‍🍳 שלבי הכנה:</h3>
+                <ol>
+                    <li>ערבבו בקערה את החומרים היבשים</li>
+                    <li>הוסיפו בהדרגה את המים והשמן תוך כדי לישה</li>
+                    <li>לושו 10 דקות עד לקבלת בצק אחיד</li>
+                    <li>תנו לבצק לתפוח שעה</li>
+                    <li>צרו לחם</li>
+                    <li>תנו לתפיחה שנייה של 30-40 דקות</li>
+                    <li>מרחו ביצה טרופה על הלחם</li>
+                    <li>אפו בתנור שחומם ל-180 מעלות למשך 35 דקות</li>
+                </ol>`,
+            spelt_rolls: `
+                <h2>🥖 לחמניות כוסמין לבן פרווה – בגרסת השף 🧑‍🍳</h2>
+                <h3>💯 תוצאה:</h3>
+                <p>לחמניות ענניות, גמישות, רכות כמו כרית, ועם ניחוח של מאפייה ברמה עולמית.</p>
+                
+                <h3>🧾 רכיבים (לכ-14 לחמניות בינוניות):</h3>
+                <div class="ingredients-table">
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">קמח כוסמין לבן</div>
+                        <div class="ingredient-amount">1 ק"ג (7 כוסות)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">גרנטה</div>
+                        <div class="ingredient-amount">10 גרם (1 כף שטוחה)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">גלוטן</div>
+                        <div class="ingredient-amount">20 גרם (2 כפות שטוחות)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">שמרים יבשים</div>
+                        <div class="ingredient-amount">1 כף מלאה (10 גרם)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">סוכר קוקוס או סילאן טבעי</div>
+                        <div class="ingredient-amount">2 כפות</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">שמן זית איכותי</div>
+                        <div class="ingredient-amount">1/4 כוס (60 מ"ל)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">מים פושרים</div>
+                        <div class="ingredient-amount">2.25 כוסות (540 מ"ל)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">מיץ לימון טרי / חומץ תפוחים</div>
+                        <div class="ingredient-amount">1 כף</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">מלח ים דק</div>
+                        <div class="ingredient-amount">1 כפית (10 גרם) – בסוף הלישה</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">שמן שומשום (לטעם עדין)</div>
+                        <div class="ingredient-amount">1/2 כפית</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">שומשום / קצח / שיבולת שועל</div>
+                        <div class="ingredient-amount">לקישוט (אופציונלי)</div>
+                    </div>
+                </div>
+                
+                <h3>🥣 אופן הכנה – שלב אחר שלב:</h3>
+                
+                <h4>1. לישה מתקדמת עם מנוחה:</h4>
+                <ol>
+                    <li>בקערת מיקסר או ביד, שים: קמח, גרנטה, גלוטן, שמרים, סוכר/סילאן, שמן זית, שמן שומשום, מיץ לימון ומרבית המים.</li>
+                    <li>לערבב 2 דקות → להשאיר 10 דקות "אוטוליזה" (מנוחה) – משחרר את הסיבים ומתחיל תהליך גלוטן טבעי.</li>
+                    <li>לאחר מכן, מוסיפים את המלח.</li>
+                    <li>ללוש עוד 8 דקות עד לקבלת בצק חלק, מעט דביק אך גמיש.</li>
+                </ol>
+                <p>💡 אם יבש מדי – הוסף עוד מים כף אחרי כף.</p>
+                
+                <h4>2. התפחה איטית ללילה (שדרוג עולמי):</h4>
+                <ol>
+                    <li>מכסים את הקערה, משמנים את פני הבצק.</li>
+                    <li>מכניסים למקרר ללילה (8–12 שעות) – נותן נפח, טעם עמוק ומרקם אוורירי במיוחד.</li>
+                </ol>
+                <p>⏱ אין זמן? התפח שעה בטמפ' חדר, ואז המשך לשלב הבא.</p>
+                
+                <h4>3. עיצוב לחמניות:</h4>
+                <ol>
+                    <li>מחלקים ל־14 חתיכות שוות.</li>
+                    <li>מגלגלים כל חתיכה לכדור מתוח.</li>
+                    <li>מניחים עלית עם נייר אפייה, ברווחים של 3–4 ס"מ.</li>
+                </ol>
+                
+                <h4>4. התפחה שנייה:</h4>
+                <ol>
+                    <li>מכסים במגבת או ניילון.</li>
+                    <li>מתפיחים בטמפ' חדר 30–40 דקות עד להכפלת נפח.</li>
+                </ol>
+                
+                <h4>5. הברשה ואפייה מושלמת:</h4>
+                <ol>
+                    <li>מברישים את הלחמניות ב:<br>
+                        ✅ שמן קוקוס נמס + טיפת סילאן<br>
+                        ✅ או סילאן מדולל במים (למראה מבריק)</li>
+                    <li>זורים מעל שומשום / קצח / קוואקר לפי טעם.</li>
+                    <li>מחממים תנור ל־180 מעלות.</li>
+                    <li>ב־10 הדקות הראשונות – שים קערה עם מים רותחים בתחתית התנור (יוצר אדים → קרום דק וזהוב).</li>
+                    <li>אופים 20–22 דקות עד להשחמה קלה ומרקם קפיצי.</li>
+                </ol>
+                
+                <h4>🧊 אחסון:</h4>
+                <ul>
+                    <li>לשמירה על רכות: עטוף בשקית אטומה.</li>
+                    <li>להקפאה: עטוף כל לחמנייה בנפרד בנייר, ואז בשקית.</li>
+                </ul>
+            `,
+            sweet_challah: `
+                <h2>🥖 חלות מתוקות רכות להפליא</h2>
+                <p class="recipe-intro">מתכון קל להכנה לחלות מתוקות, רכות ואווריריות, מושלם לשבת וחג. מתקבלות חלות מתוקות, רכות מבפנים וזהובות מבחוץ.</p>
+                
+                <div class="recipe-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">⏱️</span>
+                        <span>זמן הכנה: 30 דקות + 3.5 שעות התפחה</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">🍞</span>
+                        <span>כמות: 4 חלות בינוניות</span>
+                    </div>
+                </div>
+                
+                <h3>🧾 רכיבים:</h3>
+                <div class="ingredients-table">
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">שמרים יבשים</div>
+                        <div class="ingredient-amount">2 כפות</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">סוכר</div>
+                        <div class="ingredient-amount">1 כוס (או פחות לפי הטעם)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">מים פושרים</div>
+                        <div class="ingredient-amount">2.5 כוסות</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">שמן קנולה</div>
+                        <div class="ingredient-amount">1/2 כוס</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">קמח לבן</div>
+                        <div class="ingredient-amount">1 ק"ג (בערך 7 כוסות)</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">מלח</div>
+                        <div class="ingredient-amount">2 כפיות</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">ביצה להברשה</div>
+                        <div class="ingredient-amount">1</div>
+                    </div>
+                    <div class="ingredient-row">
+                        <div class="ingredient-name">שומשום/פרג לקישוט</div>
+                        <div class="ingredient-amount">לפי הטעם</div>
+                    </div>
+                </div>
+                
+                <h3>👩‍🍳 אופן ההכנה:</h3>
+                
+                <div class="prep-step">
+                    <h4>1. התחלת השאור</h4>
+                    <p>בקערה גדולה מערבבים את השמרים, הסוכר, המים הפושרים והשמן. מערבבים היטב ומניחים למשך 10 דקות עד שנוצרת שכבת בועות על פני התערובת.</p>
+                </div>
+                
+                <div class="prep-step">
+                    <h4>2. לישת הבצק</h4>
+                    <p>מוסיפים את הקמח והמלח לקערה. מתחילים לערבב בכף עץ, ואז עוברים ללישה בידיים כ-5 דקות עד שמתקבל בצק חלק וגמיש. אם הבצק דביק מדי, מוסיפים עוד קמח בכמויות קטנות (1/2 כוס) עד לקבלת המרקם הרצוי.</p>
+                </div>
+                
+                <div class="prep-step">
+                    <h4>3. התפחה ראשונה</h4>
+                    <p>מכסים את הקערה במגבת נקייה ומניחים במקום חמים למשך שעתיים, או עד שהבצק מכפיל את נפחו.</p>
+                </div>
+                
+                <div class="prep-step">
+                    <h4>4. הפרשת חלה</h4>
+                    <p>מפרישים חתיכה קטנה מהבצק (כגודל זית) ואומרים: "הרי זו חלה".</p>
+                    <p class="recipe-note">💡 טיפ: להפרשת חלה עם ברכה, יש להכפיל את כמויות המתכון.</p>
+                </div>
+                
+                <div class="prep-step">
+                    <h4>5. עיצוב החלות</h4>
+                    <p>מחלקים את הבצק ל-4 חלקים שווים. כל חלק מחולק ל-3 או 4 צמות, לפי העדפתכם. מעצבים את החלות ומניחים בתבנית מרופדת בנייר אפייה.</p>
+                </div>
+                
+                <div class="prep-step">
+                    <h4>6. התפחה שנייה</h4>
+                    <p>מכסים את החלות במגבת נקייה ומניחים להן לתפוח שוב למשך 20 דקות.</p>
+                </div>
+                
+                <div class="prep-step">
+                    <h4>7. אפייה</h4>
+                    <p>מחממים תנור ל-180 מעלות. מברישים את החלות בביצה טרופה, ומפזרים מעל שומשום או פרג לפי הטעם. אופים כ-35 דקות או עד שהחלות מזהיבות יפה.</p>
+                    <p class="recipe-note">🔥 טיפ: לבדוק את החלות 5 דקות לפני סיום האפייה, זמני אפייה משתנים מתנור לתנור.</p>
+                </div>
+                
+                <div class="prep-step">
+                    <h4>8. הגשה</h4>
+                    <p>מניחים לחלות להתקרר מעט על רשת לפני ההגשה.</p>
+                </div>
+                
+                <div class="recipe-tips">
+                    <h4>💡 טיפים נוספים:</h4>
+                    <ul>
+                        <li>לחלות רכות יותר, אפשר להוסיף 1/4 כוס דבש או סילאן לתערובת הנוזלים.</li>
+                        <li>לחלות עשירות יותר, אפשר להחליף חלק מהמים בחלב.</li>
+                        <li>לחלות פריכות יותר, אפשר להבריש בחמאה מיד לאחר הוצאתן מהתנור.</li>
+                    </ul>
+                </div>
+                
+                <div class="storage-tip">
+                    <h4>📦 אחסון:</h4>
+                    <p>לשמירה על הרכות, עוטפים את החלות היטב בניילון נצמד. ניתן להקפיא עד חודש.</p>
+                </div>
+            `,
+            spelt_rolls_new: `
+                <h2>🥐 לחמניות כוסמין</h2>
+                <h3>🍞 מרכיבים:</h3>
+                <ul>
+                    <li>1 ק"ג קמח כוסמין</li>
+                    <li>10 גרם גרנטה</li>
+                    <li>20 גרם גלוטן</li>
+                    <li>3 כפות סוכר</li>
+                    <li>1.5 כפות שמרים</li>
+                    <li>1 כפית מלח</li>
+                    <li>2 כוסות מים פושרים</li>
+                    <li>1/4 כוס שמן</li>
+                </ul>
+                
+                <h3>👩‍🍳 שלבי הכנה:</h3>
+                <div class="prep-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>ערבוב החומרים</h4>
+                            <p>ערבבו בקערה גדולה את כל החומרים היבשים: קמח, סוכר, מלח ושמרים.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>לישה</h4>
+                            <p>הוסיפו בהדרגה את המים והשמן תוך כדי לישה עד לקבלת בצק חלק וגמיש.</p>
+                            <div class="step-tip">
+                                <span class="tip-icon">💡</span>
+                                <span>זמן לישה מומלץ: 10 דקות במעבד מזון או 15 דקות ביד</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>התפחה ראשונה</h4>
+                            <p>כסו את הקערה במגבת לחה והניחו לתפיחה במקום חמים כ-60 דקות, עד להכפלת הנפח.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>יצירת הצורה</h4>
+                            <p>חלקו את הבצק ל-12 חלקים שווים (כ-80 גרם כל אחד) וצרו מכל חלק כדור חלק.</p>
+                            <div class="step-tip">
+                                <span class="tip-icon">👐</span>
+                                <span>למניעת הידבקות, מרחו מעט שמן על כפות הידיים</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>התפחה שנייה</h4>
+                            <p>הניחו את הכדורים בתבנית משומנת במרווחים שווים, כסו והניחו לתפיחה נוספת של 30 דקות.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>אפייה</h4>
+                            <p>מרחו ביצה טרופה בעזרת מברשת אפייה ואפו בתנור שחומם מראש ל-180 מעלות למשך 20-25 דקות, עד להזהבה יפה.</p>
+                            <div class="step-tip">
+                                <span class="tip-icon">⏱️</span>
+                                <span>בדקו את הלחמניות 5 דקות לפני סוף הזמן המומלץ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+        };
+
+        function showRecipe(key) {
+            if (recipes[key]) {
+                document.getElementById("recipe-content").innerHTML = recipes[key];
+                document.getElementById("recipe-content").innerHTML += document.getElementById("water-percentage").innerHTML;
+            }
+        }
+
+        function printRecipe() {
+            // יצירת תוכן חדש להדפסה
+            const recipeContent = document.getElementById('recipe-content').innerHTML;
+            const printContent = `
+                <!DOCTYPE html>
+                <html dir="rtl" lang="he">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>הדפסת מתכון</title>
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+                        body {
+                            font-family: 'Heebo', sans-serif;
+                            line-height: 1.6;
+                            color: #333;
+                            padding: 20px;
+                            max-width: 800px;
+                            margin: 0 auto;
+                        }
+                        h1, h2, h3, h4 {
+                            color: #5d4037;
+                            margin: 20px 0 10px;
+                        }
+                        .recipe-intro {
+                            font-size: 1.1em;
+                            color: #5d4037;
+                            line-height: 1.6;
+                            margin-bottom: 20px;
+                            padding: 15px;
+                            background: #fff9f9;
+                            border-right: 4px solid #ff8a65;
+                            border-radius: 0 8px 8px 0;
+                        }
+                        .ingredients-table {
+                            width: 100%;
+                            margin: 20px 0;
+                            border-collapse: collapse;
+                            background: #fff9f9;
+                            border-radius: 10px;
+                            overflow: hidden;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                        }
+                        .ingredient-row {
+                            display: flex;
+                            border-bottom: 1px solid #f0e6e6;
+                            padding: 12px 15px;
+                        }
+                        .ingredient-name {
+                            flex: 1;
+                            font-weight: 500;
+                            color: #5d4037;
+                        }
+                        .ingredient-amount {
+                            width: 200px;
+                            text-align: left;
+                            color: #e65100;
+                            font-weight: 600;
+                        }
+                        .prep-step {
+                            margin-bottom: 15px;
+                            padding: 10px;
+                            background: #fff9f9;
+                            border-right: 3px solid #ff8a65;
+                            border-radius: 0 5px 5px 0;
+                        }
+                        .recipe-tips {
+                            background: #f1f8e9;
+                            padding: 15px;
+                            border-radius: 8px;
+                            margin: 20px 0;
+                            border-right: 3px solid #8bc34a;
+                        }
+                        .storage-tip {
+                            background: #e3f2fd;
+                            padding: 15px;
+                            border-radius: 8px;
+                            margin-top: 20px;
+                            border-right: 3px solid #64b5f6;
+                        }
+                        @page {
+                            size: A4;
+                            margin: 2cm;
+                        }
+                        @media print {
+                            body {
+                                padding: 0;
+                            }
+                            .no-print {
+                                display: none !important;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div id="print-content">${recipeContent}</div>
+                    <div class="no-print" style="text-align: center; margin-top: 30px; font-size: 0.9em; color: #888;">
+                        הודף מ-אתר לחמים | ${new Date().toLocaleDateString('he-IL')}
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            // פתיחת חלון חדש להדפסה
+            const printWindow = window.open('', '_blank');
+            printWindow.document.open();
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+            
+            // המתנה לטעינת התוכן ואז הדפסה
+            printWindow.onload = function() {
+                setTimeout(function() {
+                    printWindow.print();
+                    printWindow.close();
+                }, 500);
+            };
+        }
+        
+        // הצגת המתכון הראשון בטעינת הדף
+        document.addEventListener('DOMContentLoaded', function() {
+            showRecipe('hala');
+        });
+
+        // הסרנו את מאזיני האירועים המיותרים
+    </script>
+</body>
+</html>
